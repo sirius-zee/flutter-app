@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:staycation_app/home/tabhome.dart';
 
 void main() {
   runApp(const MyApp());
@@ -26,60 +27,87 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: Stack(children: [
-      Image.asset(
-        'assets/img/premier-suite.jpg',
-        fit: BoxFit.cover, // Memastikan gambar menyesuaikan dengan ukuran layar
-        width: double.infinity, // Lebar gambar memenuhi layar
-        height: double.infinity,
-      ),
-      const Padding(
-        padding: EdgeInsets.all(20),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'Discover serenity in The Heart Of Comfort!',
-                style: TextStyle(
-                  fontSize: 30,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  shadows: [
-                    Shadow(
-                      blurRadius: 10.0, // Radius dari bayangan
-                      color: Color.fromRGBO(
-                          0, 0, 0, 0.5), // Warna dan transparansi bayangan
-                      offset: Offset(2.0, 2.0), // Posisi bayangan, x dan y
-                    ),
-                  ],
-                ),
-                textAlign: TextAlign.center,
+    return DefaultTabController(
+      length: 3,
+      child: Scaffold(
+        body: const TabBarView(
+          children: [
+            Center(child: TabHome()),
+            Center(child: TabLoctaion()),
+            Center(child: TabSettings()),
+          ],
+        ),
+        bottomNavigationBar: Container(
+          decoration: const BoxDecoration(
+            border: Border(
+              top: BorderSide(
+                color: Color.fromARGB(255, 175, 126, 35),
+                width: 1.0,
               ),
-              SizedBox(height: 10), // Jarak antara dua teks
-              Text(
-                "Welcome to a sanctuary where every detail is designed for your comfort and peace.",
-                style: TextStyle(
-                  fontSize: 12,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  shadows: [
-                    Shadow(
-                      blurRadius: 10.0, // Radius dari bayangan
-                      color: Color.fromRGBO(
-                          0, 0, 0, 0.5), // Warna dan transparansi bayangan
-                      offset: Offset(2.0, 2.0), // Posisi bayangan, x dan y
-                    ),
-                  ],
+            ),
+          ),
+          child: const TabBar(
+            tabs: [
+              SizedBox(
+                height: 60.0,
+                child: Tab(
+                  icon: Icon(Icons.home, size: 25.0),
                 ),
-                textAlign: TextAlign.center,
               ),
-              SizedBox(height: 10),
+              SizedBox(
+                height: 60.0,
+                child: Tab(
+                  icon: Icon(Icons.location_pin, size: 25.0),
+                ),
+              ),
+              SizedBox(
+                height: 60.0,
+                child: Tab(
+                  icon: Icon(Icons.settings, size: 25.0),
+                ),
+              ),
             ],
+            labelColor: Color.fromARGB(255, 175, 126, 35),
+            unselectedLabelColor: Colors.grey,
+            indicator: BoxDecoration(
+              color: Colors.transparent,
+              border: Border(
+                bottom: BorderSide(
+                  color: Color.fromARGB(255, 175, 126, 35),
+                  width: 3.0,
+                ),
+              ),
+            ),
+            indicatorSize: TabBarIndicatorSize.tab,
           ),
         ),
       ),
-    ]));
+    );
+  }
+}
+
+class TabLoctaion extends StatelessWidget {
+  const TabLoctaion({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Scaffold(
+      body: Center(
+        child: Text('Location Maps'),
+      ),
+    );
+  }
+}
+
+class TabSettings extends StatelessWidget {
+  const TabSettings({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Scaffold(
+      body: Center(
+        child: Text('Settings'),
+      ),
+    );
   }
 }
