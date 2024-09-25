@@ -39,6 +39,7 @@ class MyHomePage extends StatelessWidget {
         ),
         bottomNavigationBar: Container(
           decoration: const BoxDecoration(
+            color: Colors.white,
             border: Border(
               top: BorderSide(
                 color: Color.fromARGB(255, 175, 126, 35),

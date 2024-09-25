@@ -9,22 +9,22 @@ class Dashboard extends StatelessWidget {
       decoration: const BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            Color.fromRGBO(49, 49, 49, 1),
             Color.fromARGB(255, 26, 26, 26),
+            Color.fromRGBO(49, 49, 49, 1),
           ],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
         ),
       ),
       width: double.infinity,
-      height: 215,
+      // height: 215,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
+        padding: const EdgeInsets.only(left: 24, right: 24, bottom: 24),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            const SizedBox(height: 48),
+            const SizedBox(height: 40),
             const Text(
               'Location',
               style: TextStyle(
@@ -54,7 +54,7 @@ class Dashboard extends StatelessWidget {
                 borderRadius: BorderRadius.circular(15),
               ),
               child: const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+                padding: EdgeInsets.symmetric(horizontal: 16),
                 child: Row(
                   children: <Widget>[
                     Icon(
