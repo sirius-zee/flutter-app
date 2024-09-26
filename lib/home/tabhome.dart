@@ -42,10 +42,13 @@ class TabHome extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
                           Expanded(
-                            child: Image.asset(
-                              data.imageAsset,
-                              fit: BoxFit.cover,
-                              width: double.infinity, // Menyesuaikan gambar
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(16),
+                              child: Image.asset(
+                                data.imageAsset,
+                                fit: BoxFit.cover,
+                                width: double.infinity,
+                              ),
                             ),
                           ),
                           Padding(
@@ -53,14 +56,12 @@ class TabHome extends StatelessWidget {
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
-                                Text(
-                                    data.name, // Menampilkan title atau data lain
+                                Text(data.name,
                                     style: const TextStyle(
                                       fontSize: 12,
                                       fontWeight: FontWeight.bold,
                                     )),
-                                Text(
-                                    data.stayPrice, // Menampilkan title atau data lain
+                                Text(data.stayPrice,
                                     style: const TextStyle(
                                       fontSize: 12,
                                       fontWeight: FontWeight.bold,
