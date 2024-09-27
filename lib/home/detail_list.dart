@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:staycation_app/home/count_price.dart';
 import 'package:staycation_app/home/expanded_widget.dart';
+import 'package:staycation_app/home/facility.dart';
+import 'package:staycation_app/home/rating_review.dart';
 import 'package:staycation_app/home/staydata.dart';
 import 'dart:developer' as developer;
 
-const Color iconsColor = Color.fromRGBO(175, 126, 35, 1);
+const Color iconsColor = Color.fromRGBO(198, 124, 78, 1);
 
 class DetailList extends StatelessWidget {
   final StayData data;
@@ -17,17 +20,35 @@ class DetailList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Detail'),
-        backgroundColor: const Color.fromARGB(255, 26, 26, 26),
-        foregroundColor: Colors.white70,
-      ),
+      // appBar: AppBar(
+      //   title: const Text('Detail'),
+      //   backgroundColor: const Color.fromARGB(255, 26, 26, 26),
+      //   foregroundColor: Colors.white70,
+      // ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(24),
+          padding: const EdgeInsets.only(left: 24, right: 24, bottom: 24),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              SafeArea(
+                child: Row(
+                  children: [
+                    IconButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        icon: Icon(Icons.arrow_back)),
+                    Text(
+                      'Detail ${data.name}',
+                      style: TextStyle(
+                        color: Colors.black54,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 10),
               ClipRRect(
                 borderRadius: BorderRadius.circular(12),
                 child: AspectRatio(
@@ -50,141 +71,23 @@ class DetailList extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.star_rate_rounded,
-                        size: 26,
-                        color: Colors.amber,
-                      ),
-                      Text(
-                        '4.8',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      SizedBox(width: 4),
-                      Text(
-                        '(230)',
-                        style: TextStyle(color: Colors.grey),
-                      )
-                    ],
+                  RatingReview(
+                    rating: data.ratingReview.rating.toString(),
+                    review: data.ratingReview.review.toString(),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Container(
-                        margin: const EdgeInsets.symmetric(horizontal: 2),
-                        decoration: const BoxDecoration(
-                          color: iconsColor,
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(3),
-                          ),
-                        ),
-                        child: const Padding(
-                          padding: EdgeInsets.all(3),
-                          child: Icon(
-                            Icons.bed_rounded,
-                            size: 28,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                      Container(
-                        margin: const EdgeInsets.symmetric(horizontal: 2),
-                        decoration: const BoxDecoration(
-                          color: iconsColor,
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(3),
-                          ),
-                        ),
-                        child: const Padding(
-                          padding: EdgeInsets.all(3),
-                          child: Icon(
-                            Icons.room_service,
-                            size: 28,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                      Container(
-                        margin: const EdgeInsets.symmetric(horizontal: 2),
-                        decoration: const BoxDecoration(
-                          color: iconsColor,
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(3),
-                          ),
-                        ),
-                        child: const Padding(
-                          padding: EdgeInsets.all(3),
-                          child: Icon(
-                            Icons.dining_outlined,
-                            size: 28,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                      Container(
-                        margin: const EdgeInsets.symmetric(horizontal: 2),
-                        decoration: const BoxDecoration(
-                          color: iconsColor,
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(3),
-                          ),
-                        ),
-                        child: const Padding(
-                          padding: EdgeInsets.all(3),
-                          child: Icon(
-                            Icons.cell_wifi_rounded,
-                            size: 28,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                      Container(
-                        margin: const EdgeInsets.symmetric(horizontal: 2),
-                        decoration: const BoxDecoration(
-                          color: iconsColor,
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(3),
-                          ),
-                        ),
-                        child: const Padding(
-                          padding: EdgeInsets.all(3),
-                          child: Icon(
-                            Icons.child_friendly_rounded,
-                            size: 28,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                      Container(
-                        margin: const EdgeInsets.symmetric(horizontal: 2),
-                        decoration: const BoxDecoration(
-                          color: iconsColor,
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(3),
-                          ),
-                        ),
-                        child: const Padding(
-                          padding: EdgeInsets.all(3),
-                          child: Icon(
-                            Icons.credit_card_rounded,
-                            size: 28,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ],
-                  )
+                  FacilityContent(
+                    doubleBed: data.fasility.doubleBed,
+                    roomServices: data.fasility.roomServices,
+                    dining: data.fasility.dining,
+                    wifi: data.fasility.wifi,
+                    noSmoking: data.fasility.noSmoking,
+                  ),
                 ],
               ),
+              const SizedBox(height: 5),
               const Divider(
                 thickness: 1,
-                color: iconsColor,
+                color: Color.fromARGB(255, 230, 230, 230),
               ),
               const SizedBox(height: 5),
               const Text(
@@ -194,36 +97,38 @@ class DetailList extends StatelessWidget {
               const SizedBox(height: 5),
               ExpandedWidget(text: data.description),
               const SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: klik,
-                style: ElevatedButton.styleFrom(
-                  foregroundColor: Colors.white,
-                  backgroundColor:
-                      const Color.fromARGB(255, 175, 126, 35), // Text color
-                  shadowColor:
-                      const Color.fromRGBO(100, 70, 13, 1), // Shadow color
-                  elevation: 5, // Elevation (shadow depth)
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 30,
-                      vertical: 20), // Padding inside the button
-                  shape: RoundedRectangleBorder(
-                    // Button shape
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                ), // Menggunakan fungsi klik
-                child: const SizedBox(
-                  width: double.infinity, // Lebar tombol 100%
-                  child: Center(
-                    child: Text(
-                      'Get Started',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
+              CountPrice(),
+              // const SizedBox(height: 20),
+              // ElevatedButton(
+              //   onPressed: klik,
+              //   style: ElevatedButton.styleFrom(
+              //     foregroundColor: Colors.white,
+              //     backgroundColor:
+              //         const Color.fromARGB(255, 175, 126, 35), // Text color
+              //     shadowColor:
+              //         const Color.fromRGBO(100, 70, 13, 1), // Shadow color
+              //     elevation: 5, // Elevation (shadow depth)
+              //     padding: const EdgeInsets.symmetric(
+              //         horizontal: 30,
+              //         vertical: 20), // Padding inside the button
+              //     shape: RoundedRectangleBorder(
+              //       // Button shape
+              //       borderRadius: BorderRadius.circular(16),
+              //     ),
+              //   ), // Menggunakan fungsi klik
+              //   child: const SizedBox(
+              //     width: double.infinity, // Lebar tombol 100%
+              //     child: Center(
+              //       child: Text(
+              //         'Order Now',
+              //         style: TextStyle(
+              //           fontSize: 20,
+              //           fontWeight: FontWeight.bold,
+              //         ),
+              //       ),
+              //     ),
+              //   ),
+              // ),
             ],
           ),
         ),

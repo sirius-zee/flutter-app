@@ -37,51 +37,51 @@ class MyHomePage extends StatelessWidget {
             Center(child: TabSettings()),
           ],
         ),
-        bottomNavigationBar: Container(
-          decoration: const BoxDecoration(
-            color: Colors.white,
-            border: Border(
-              top: BorderSide(
-                color: Color.fromARGB(255, 175, 126, 35),
-                width: 1.0,
-              ),
-            ),
-          ),
-          child: const TabBar(
-            tabs: [
-              SizedBox(
-                height: 60.0,
-                child: Tab(
-                  icon: Icon(Icons.home, size: 25.0),
-                ),
-              ),
-              SizedBox(
-                height: 60.0,
-                child: Tab(
-                  icon: Icon(Icons.location_pin, size: 25.0),
-                ),
-              ),
-              SizedBox(
-                height: 60.0,
-                child: Tab(
-                  icon: Icon(Icons.settings, size: 25.0),
-                ),
-              ),
-            ],
-            labelColor: Color.fromARGB(255, 175, 126, 35),
-            unselectedLabelColor: Colors.grey,
-            indicator: BoxDecoration(
-              color: Colors.transparent,
-              border: Border(
-                bottom: BorderSide(
-                  color: Color.fromARGB(255, 175, 126, 35),
-                  width: 3.0,
-                ),
-              ),
-            ),
-            indicatorSize: TabBarIndicatorSize.tab,
-          ),
-        ),
+        // bottomNavigationBar: Container(
+        //   decoration: const BoxDecoration(
+        //     color: Colors.white,
+        //     border: Border(
+        //       top: BorderSide(
+        //         color: Color.fromARGB(255, 175, 126, 35),
+        //         width: 1.0,
+        //       ),
+        //     ),
+        //   ),
+        //   child: const TabBar(
+        //     tabs: [
+        //       SizedBox(
+        //         height: 60.0,
+        //         child: Tab(
+        //           icon: Icon(Icons.home, size: 25.0),
+        //         ),
+        //       ),
+        //       SizedBox(
+        //         height: 60.0,
+        //         child: Tab(
+        //           icon: Icon(Icons.location_pin, size: 25.0),
+        //         ),
+        //       ),
+        //       SizedBox(
+        //         height: 60.0,
+        //         child: Tab(
+        //           icon: Icon(Icons.settings, size: 25.0),
+        //         ),
+        //       ),
+        //     ],
+        //     labelColor: Color.fromARGB(255, 175, 126, 35),
+        //     unselectedLabelColor: Colors.grey,
+        //     indicator: BoxDecoration(
+        //       color: Colors.transparent,
+        //       border: Border(
+        //         bottom: BorderSide(
+        //           color: Color.fromARGB(255, 175, 126, 35),
+        //           width: 3.0,
+        //         ),
+        //       ),
+        //     ),
+        //     indicatorSize: TabBarIndicatorSize.tab,
+        //   ),
+        // ),
       ),
     );
   }

@@ -41,41 +41,41 @@ class Dashboard extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20),
-            Container(
-              decoration: BoxDecoration(
-                gradient: const LinearGradient(
-                  colors: [
-                    Color.fromARGB(5, 179, 179, 179),
-                    Color.fromARGB(40, 179, 179, 179),
-                  ],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                ),
-                borderRadius: BorderRadius.circular(15),
-              ),
-              child: const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16),
-                child: Row(
-                  children: <Widget>[
-                    Icon(
-                      Icons.search,
-                      color: Colors.white,
-                    ),
-                    SizedBox(width: 8.0),
-                    Expanded(
-                      child: TextField(
-                        decoration: InputDecoration(
-                          hintText: 'Search...',
-                          hintStyle: TextStyle(color: Colors.white),
-                          border: InputBorder.none,
-                        ),
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
+            // Container(
+            //   decoration: BoxDecoration(
+            //     gradient: const LinearGradient(
+            //       colors: [
+            //         Color.fromARGB(5, 179, 179, 179),
+            //         Color.fromARGB(40, 179, 179, 179),
+            //       ],
+            //       begin: Alignment.topLeft,
+            //       end: Alignment.bottomRight,
+            //     ),
+            //     borderRadius: BorderRadius.circular(15),
+            //   ),
+            //   child: const Padding(
+            //     padding: EdgeInsets.symmetric(horizontal: 16),
+            //     child: Row(
+            //       children: <Widget>[
+            //         Icon(
+            //           Icons.search,
+            //           color: Colors.white,
+            //         ),
+            //         SizedBox(width: 8.0),
+            //         Expanded(
+            //           child: TextField(
+            //             decoration: InputDecoration(
+            //               hintText: 'Search...',
+            //               hintStyle: TextStyle(color: Colors.white),
+            //               border: InputBorder.none,
+            //             ),
+            //             style: TextStyle(color: Colors.white),
+            //           ),
+            //         ),
+            //       ],
+            //     ),
+            //   ),
+            // ),
           ],
         ),
       ),
