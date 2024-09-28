@@ -22,7 +22,6 @@ class MyApp extends StatelessWidget {
         '/': (context) => Welcome(),
         '/home': (context) => MyHomePage(),
       },
-      // home: MyHomePage(),
     );
   }
 }
