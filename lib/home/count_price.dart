@@ -88,7 +88,7 @@ class CountPriceState extends State<CountPrice> {
                   borderRadius: BorderRadius.circular(50),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black.withOpacity(0.1),
+                      color: Color.fromRGBO(0, 0, 0, 0.1),
                       offset: Offset(1, 1),
                       blurRadius: 4,
                       spreadRadius: 1,
@@ -148,7 +148,7 @@ class CountPriceState extends State<CountPrice> {
                   borderRadius: BorderRadius.circular(50),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black.withOpacity(0.1),
+                      color: Color.fromRGBO(0, 0, 0, 0.1),
                       offset: Offset(1, 1),
                       blurRadius: 4,
                       spreadRadius: 1,
