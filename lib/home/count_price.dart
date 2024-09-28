@@ -1,10 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:intl/intl.dart';
+import 'dart:developer' as developer;
 
 const myColor = Color.fromRGBO(198, 124, 78, 1);
 
 class CountPrice extends StatefulWidget {
-  const CountPrice({super.key});
+  final String namaPenginapan;
+  final String nomorWhatsapp;
+  final int hargaPenginapan;
+  const CountPrice(
+      {super.key,
+      required this.namaPenginapan,
+      required this.nomorWhatsapp,
+      required this.hargaPenginapan});
 
   @override
   CountPriceState createState() => CountPriceState();
@@ -12,7 +21,6 @@ class CountPrice extends StatefulWidget {
 
 class CountPriceState extends State<CountPrice> {
   int count = 0;
-  final double price = 50.0;
   final TextEditingController _controller = TextEditingController();
 
   void _updateCount(String value) {
@@ -39,34 +47,39 @@ class CountPriceState extends State<CountPrice> {
   }
 
   void _openWhatsApp() async {
-    // Ganti dengan nomor telepon dan pesan Anda
-    String phoneNumber =
-        '6281215027197'; // Nomor telepon (harus dalam format internasional)
     String message =
-        'Halo, saya tertarik dengan produk Anda!'; // Pesan yang ingin dikirim
-    final Uri url = Uri.parse(
-        'https://api.whatsapp.com/send?phone=$phoneNumber&text=${Uri.encodeComponent(message)}');
+        'Halo, saya tertarik untuk menginap di "${widget.namaPenginapan} untuk $count Malam"!';
 
-    if (await canLaunchUrl(url)) {
-      await launchUrl(url);
-    } else {
-      throw 'Tidak bisa membuka WhatsApp';
+    final Uri url = Uri.parse(
+        'https://api.whatsapp.com/send?phone=${widget.nomorWhatsapp}&text=${Uri.encodeComponent(message)}');
+
+    try {
+      if (await canLaunchUrl(url)) {
+        await launchUrl(url, mode: LaunchMode.externalApplication);
+      } else {
+        await launchUrl(Uri.parse(
+            'https://api.whatsapp.com/send?phone=${widget.nomorWhatsapp}&text=${Uri.encodeComponent(message)}'));
+      }
+    } catch (e) {
+      developer.log('$e');
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    double totalPrice = count * price;
+    int totalPrice = count * widget.hargaPenginapan;
+
+    final formattedPrice = NumberFormat.currency(
+      //mengubah format number Rp
+      locale: 'id',
+      symbol: 'Rp ',
+      decimalDigits: 0,
+    ).format(totalPrice);
 
     return Padding(
       padding: const EdgeInsets.all(0),
       child: Column(
         children: [
-          // Text(
-          //   'Price per item: \$${price.toStringAsFixed(2)}',
-          //   style: TextStyle(fontSize: 18),
-          // ),
-          // SizedBox(height: 20),
           Row(
             children: [
               Container(
@@ -113,17 +126,16 @@ class CountPriceState extends State<CountPrice> {
                         floatingLabelAlignment: FloatingLabelAlignment.center,
                         contentPadding:
                             EdgeInsets.symmetric(vertical: 15, horizontal: 40),
-                        labelText: 'Jumlah / Malam',
+                        labelText: totalPrice > 0 ? '' : 'Jumlah / Malam',
                         labelStyle: TextStyle(color: Colors.grey),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(16),
-                          borderSide: BorderSide(
-                              color: myColor), // Warna border saat enabled
+                          borderSide: BorderSide(color: myColor),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(16),
                           borderSide: BorderSide(
-                              color: myColor), // Warna border saat fokus
+                              color: const Color.fromARGB(255, 177, 79, 18)),
                         ),
                       ),
                     ),
@@ -158,34 +170,43 @@ class CountPriceState extends State<CountPrice> {
               ),
             ],
           ),
-          SizedBox(height: 10),
-          Text(
-            'Total Price: \$${totalPrice.toStringAsFixed(2)}',
-            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-          ),
-          SizedBox(height: 10),
+          SizedBox(height: 20),
           ElevatedButton(
-            onPressed: _openWhatsApp,
+            onPressed: totalPrice > 0 ? _openWhatsApp : null,
             style: ElevatedButton.styleFrom(
               foregroundColor: Colors.white,
               backgroundColor: myColor,
+              disabledBackgroundColor: Color.fromRGBO(198, 124, 78, 0.8),
               shadowColor: const Color.fromRGBO(100, 70, 13, 1),
               elevation: 5,
-              padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+              padding: EdgeInsets.symmetric(
+                  horizontal: totalPrice > 0 ? 10 : 30,
+                  vertical: totalPrice > 0 ? 15 : 20),
               shape: RoundedRectangleBorder(
-                // Button shape
                 borderRadius: BorderRadius.circular(16),
               ),
             ),
-            child: const SizedBox(
+            child: SizedBox(
               width: double.infinity,
               child: Center(
-                child: Text(
-                  'Order Now',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
+                child: Column(
+                  children: [
+                    if (totalPrice > 0)
+                      Text(
+                        'Total : $formattedPrice',
+                        style: TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.bold),
+                      ),
+                    Text(
+                      totalPrice > 0
+                          ? 'Order Now'
+                          : 'Silahkan masukan jumlah/malam',
+                      style: TextStyle(
+                          fontSize: totalPrice > 0 ? 12 : 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white70),
+                    ),
+                  ],
                 ),
               ),
             ),

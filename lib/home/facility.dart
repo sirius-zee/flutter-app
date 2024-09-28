@@ -26,7 +26,7 @@ class FacilityContent extends StatelessWidget {
       children: [
         if (doubleBed)
           Container(
-            margin: const EdgeInsets.symmetric(horizontal: 2),
+            margin: const EdgeInsets.symmetric(horizontal: 4),
             decoration: const BoxDecoration(
               color: iconsColor,
               borderRadius: BorderRadius.all(
@@ -44,7 +44,7 @@ class FacilityContent extends StatelessWidget {
           ),
         if (roomServices)
           Container(
-            margin: const EdgeInsets.symmetric(horizontal: 2),
+            margin: const EdgeInsets.symmetric(horizontal: 4),
             decoration: const BoxDecoration(
               color: iconsColor,
               borderRadius: BorderRadius.all(
@@ -62,7 +62,7 @@ class FacilityContent extends StatelessWidget {
           ),
         if (dining)
           Container(
-            margin: const EdgeInsets.symmetric(horizontal: 2),
+            margin: const EdgeInsets.symmetric(horizontal: 4),
             decoration: const BoxDecoration(
               color: iconsColor,
               borderRadius: BorderRadius.all(
@@ -80,7 +80,7 @@ class FacilityContent extends StatelessWidget {
           ),
         if (wifi)
           Container(
-            margin: const EdgeInsets.symmetric(horizontal: 2),
+            margin: const EdgeInsets.symmetric(horizontal: 4),
             decoration: const BoxDecoration(
               color: iconsColor,
               borderRadius: BorderRadius.all(
@@ -98,7 +98,7 @@ class FacilityContent extends StatelessWidget {
           ),
         if (noSmoking)
           Container(
-            margin: const EdgeInsets.symmetric(horizontal: 2),
+            margin: const EdgeInsets.symmetric(horizontal: 4),
             decoration: const BoxDecoration(
               color: iconsColor,
               borderRadius: BorderRadius.all(

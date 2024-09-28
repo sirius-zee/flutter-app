@@ -3,8 +3,8 @@ import 'package:staycation_app/home/dashboard.dart';
 import 'package:staycation_app/home/detail_list.dart';
 import 'package:staycation_app/home/staydata.dart';
 
-class TabHome extends StatelessWidget {
-  const TabHome({super.key});
+class MyHomePage extends StatelessWidget {
+  const MyHomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +43,9 @@ class TabHome extends StatelessWidget {
                         children: <Widget>[
                           Expanded(
                             child: ClipRRect(
-                              borderRadius: BorderRadius.circular(16),
+                              borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(16),
+                                  topRight: Radius.circular(16)),
                               child: Image.asset(
                                 data.imageAsset,
                                 fit: BoxFit.cover,
@@ -53,20 +55,12 @@ class TabHome extends StatelessWidget {
                           ),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                Text(data.name,
-                                    style: const TextStyle(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.bold,
-                                    )),
-                                Text(data.stayPrice,
-                                    style: const TextStyle(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.bold,
-                                    )),
-                              ],
+                            child: Text(
+                              data.name,
+                              style: const TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
                         ],
